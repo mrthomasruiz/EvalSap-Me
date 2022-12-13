@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <table class="table table-success table-striped mt-5">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for category in subCategories %}
+
+
+            <tr>
+                <th scope="row">{{  category.id  }}</th>
+                <td>{{  category.title  }}</td>
+
+                <td><a href="{{ path('editSousCategorie', {'id': category.id}) }}" class="btn btn-info">Modifier</a>
+                    <a href="{{ path('deleteSousCategorie', {'id': category.id }) }}" onclick="return confirm('Etes-vous sûr?')" class="btn btn-danger">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
+

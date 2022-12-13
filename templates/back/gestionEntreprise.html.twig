@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <table class="table table-success table-striped mt-5">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Numéro voie</th>
+            <th scope="col">Nom voie</th>
+            <th scope="col">Code postal</th>
+            <th scope="col">Ville</th>
+            <th scope="col">date de création</th>
+
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for entreprise in entreprises %}
+
+
+            <tr>
+                <th scope="row">{{  entreprise.id  }}</th>
+                <td>{{  entreprise.nom  }}</td>
+                <td>{{  entreprise.numeroVoie  }}</td>
+                <td>{{  entreprise.nomVoie  }}</td>
+                <td>{{  entreprise.cp  }}</td>
+                <td>{{  entreprise.ville  }}</td>
+                <td>{{  entreprise.date | date('d-m-Y')  }}</td>
+
+                <td><a href="{{ path('editEntreprise', {'id': entreprise.id}) }}" class="btn btn-info">Modifier</a>
+                    <a href="{{ path('deleteEntreprise', {'id': entreprise.id }) }}" onclick="return confirm('Etes-vous sûr?')" class="btn btn-danger">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
+
