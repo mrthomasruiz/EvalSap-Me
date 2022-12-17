@@ -367,13 +367,13 @@ class BackController extends AbstractController
 
 
         return $this->render('back/gestionAvis.html.twig', [
-            'tousavis' => $avis
+            'avis' => $avis
         ]);
     }
 
 
     #[Route('/editAvis/{id}', name: 'editAvis')]
-    public function editAvis(Request $request, Avis $avis, EntityManagerInterface $manager): Response
+    public function editAvis(Avis $avis, Request $request, EntityManagerInterface $manager): Response
     {
 
         $form = $this->createForm(AvisType::class, $avis);
@@ -387,7 +387,7 @@ class BackController extends AbstractController
             return $this->redirectToRoute('gestionAvis');
         }
 
-        return $this->render('back/gestionAvis.html.twig', [
+        return $this->render('back/editAvis.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -396,7 +396,7 @@ class BackController extends AbstractController
     #[Route('/deleteAvis/{id}', name: 'deleteAvis')]
     public function deleteAvis(Avis $avis, EntityManagerInterface $manager): Response
     {
-        $manager->persist($avis);
+        $manager->remove($avis);
         $manager->flush();
         $this->addFlash('success', 'Avis supprimé');
         return $this->redirectToRoute('gestionAvis');

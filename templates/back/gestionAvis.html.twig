@@ -12,8 +12,8 @@
             <th scope="col">Produit</th>
             <th scope="col">Note</th>
             <th scope="col">Commentaire</th>
-            <th scope="col">Utilisateur</th>
-            <th scope="col">Date</th>
+
+
 
 
             <th scope="col">Actions</th>
@@ -21,7 +21,7 @@
         </thead>
         <tbody>
 
-        {% for avis in tousavis %}
+        {% for avis in avis %}
 
 
             <tr>
@@ -29,8 +29,8 @@
                 <td>{{ avis.produit.title }}</td>
                 <td>{{  avis.note  }}</td>
                 <td>{{  avis.commentaire }}</td>
-                <td>{{  avis.utilisateur.id  }}</td>
-                <td>{{  avis.date | date('d-m-Y')  }}</td>
+
+
 
                 <td><a href="{{ path('editAvis', {'id': avis.id}) }}" class="btn btn-info">Modifier</a>
                     <a href="{{ path('deleteAvis', {'id': avis.id }) }}" onclick="return confirm('Êtes-vous sûr?')" class="btn btn-danger">Supprimer</a></td>
