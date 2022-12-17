@@ -1,13 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-
-        {{ form(form) }}
-
-
+{% block title %}
+{{ parent() }}Ajout d'un produit
 {% endblock %}
 
-{% block title %}
-   {{ parent() }} AjoutProduit
+{% block body %}
+{{ form(form) }}
 {% endblock %}
 

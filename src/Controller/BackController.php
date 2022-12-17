@@ -9,9 +9,8 @@ use App\Entity\Product;
 use App\Entity\SubCategory;
 use App\Form\AvisType;
 use App\Form\CategoryType;
-use App\Form\EditProductType;
-use App\Form\EntrepriseType;
 use App\Form\ProductType;
+use App\Form\EntrepriseType;
 use App\Form\SubCategoryType;
 use App\Repository\AvisRepository;
 use App\Repository\CategoryRepository;
@@ -96,7 +95,7 @@ class BackController extends AbstractController
     public function editProduct(Product $product, Request $request, EntityManagerInterface $manager): Response
     {
 
-        $form = $this->createForm(EditProductType::class, $product);
+        $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);
 

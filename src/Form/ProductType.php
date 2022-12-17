@@ -4,9 +4,6 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Product;
-use Doctrine\DBAL\Types\DateType;
-use Doctrine\DBAL\Types\IntegerType;
-use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -23,46 +20,47 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('note',IntegerType::class,[
-                'label'=>'Note du produit',
+            ->add('title',TextType::class,[
+                'label'=>'Titre du produit',
                 'required'=>false,
                 'attr'=>[
-                    'placeholder'=>'Evaluer le produit'
+                    'placeholder'=>'Saisissez le titre du produit'
                 ]
             ])
-            ->add('commentaire', TextType::class,[
-                'label'=>'Commentaire',
+            ->add('category', EntityType::class,[
+                'label'=>'Catégorie',
                 'required'=>false,
-                'placeholder'=>'Commenter le produit'
-
+                'class'=>Category::class,
+                'choice_label'=>'title',
+                'placeholder'=>'Sélectionnez une catégorie'
             ])
-            ->add('date', DateType::class,[
-                'label'=>'Date du dépôt',
-                'required'=>false,
-                'attr'=>[
-                    'placeholder'=>'Date de l\'avis'
-                ]
-            ])
-            ->add('utilisateur', TextareaType::class,[
-                'label'=>'Utilisateur',
+            ->add('price', NumberType::class,[
+                'label'=>'Prix du produit',
                 'required'=>false,
                 'attr'=>[
-                    'placeholder'=>''
+                    'placeholder'=>'Saisissez le prix du produit'
                 ]
             ])
-            ->add('picture', FileType::class,[
+            ->add('description', TextareaType::class,[
+                'label'=>'Description du produit',
+                'required'=>false,
+                'attr'=>[
+                    'placeholder'=>'Saisissez une description du produit'
+                ]
+            ])
+            ->add('editPicture', FileType::class,[
                 'label'=>'Photo',
                 'required'=>false,
                 'constraints'=>[
                     new File([
-                       'mimeTypes'=>[
-                           "image/png",
-                           "image/jpg",
-                           "image/jpeg",
-                           'image/gif',
-                           'image/jfif',
-                           'image/webp'
-                       ],
+                        'mimeTypes'=>[
+                            "image/png",
+                            "image/jpg",
+                            "image/jpeg",
+                            'image/gif',
+                            'image/jfif',
+                            'image/webp'
+                        ],
                         'mimeTypesMessage'=>'Format non géré'
                     ])
                 ]
